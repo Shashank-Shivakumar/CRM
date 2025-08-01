@@ -18,12 +18,8 @@ const Login = () => {
   };
 
   const handleMicrosoftSuccess = async (microsoftResponse) => {
-    const result = await loginMicrosoft(microsoftResponse); // ✅ Now this is defined
-    if (result?.success) {
-      navigate('/dashboard');
-    } else {
-      console.warn("Microsoft login failed. Not redirecting.");
-    }
+    await loginMicrosoft(microsoftResponse);
+    navigate('/dashboard');
   };
 
   const handleMicrosoftError = (error) => {

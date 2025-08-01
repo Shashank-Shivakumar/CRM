@@ -115,14 +115,17 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('crm_token', data.access_token);
         setToken(data.access_token);
         setUser(data.user);
+        return { success: true };
       } else {
         const errorData = await response.json();
         console.error('❌ Microsoft login failed:', errorData);
         alert(`Microsoft login failed: ${errorData.detail}`);
+        return { success: false };
       }
     } catch (error) {
       console.error('Microsoft login error:', error);
       alert('Microsoft login failed. Please try again.');
+      return { success: false };
     }
   };
 
