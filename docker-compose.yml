@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  crm-api:
+    build:
+      context: .
+      dockerfile: docker_files/crm_api/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Add database connection environment variables here if needed
+    # - DATABASE_URL=postgresql://user:password@db:5432/crm_db
+    networks:
+      - crm-network
+
+  crm-ui:
+    build:
+      context: .
+      dockerfile: docker_files/crm_ui/Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - crm-api
+    networks:
+      - crm-network
+
+networks:
+  crm-network:
+    driver: bridge
