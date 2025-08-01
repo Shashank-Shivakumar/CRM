@@ -8,8 +8,7 @@ const MicrosoftLogin = ({ onSuccess, onError }) => {
   const handleMicrosoftLogin = async () => {
     try {
       console.log('🔐 Starting Microsoft login via popup...');
-      const response = await instance.loginRedirect(loginRequest);
-
+      const response = await instance.loginPopup(loginRequest);
 
       console.log('🔐 Popup login response:', response);
 
